@@ -1,0 +1,11 @@
+** Given two opposite vertices of the Square get the other two.
+  double dx =  (x11 - x33) / 2.0;
+	double dy =  (y11 - y33) / 2.0;
+	double xCenter = (x11 + x33) / 2.0;
+	double yCenter = (y11 + y33) / 2.0;
+
+	x22 = xCenter + dy;
+	y22 = yCenter - dx;
+
+	x44 = xCenter - dy;
+	y44 = yCenter + dx;

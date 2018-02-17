@@ -1,0 +1,12 @@
+/* Handling doubles */
+/*
+EPS=1e-9
+Integers   |       Doubles
+
+ a == b    | Math.abs(a - b) < EPS
+ a <= b    | a < b + EPS
+ a >= b    | a + EPS > b
+ a < b     | a + EPS < b
+ a > b     | a > b + EPS
+ */
+

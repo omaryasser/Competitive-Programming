@@ -1,0 +1,159 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	static ArrayList<Integer> arr, cum;
+	static int len, n;
+	
+	static int [][] memo;
+	static int dp (int idx, int usedLeft) {
+		if (idx == n) return 0;
+		
+		if (memo[idx][usedLeft] != -1) return memo[idx][usedLeft];
+		
+		int usedRight = (idx == 0 ? 0 : cum.get(idx - 1)) - usedLeft;
+		
+		int takeLeft = 0, takeRight = 0;
+		if (len - usedLeft >= arr.get(idx))
+			takeLeft = 1 + dp(idx + 1, usedLeft + arr.get(idx));
+		
+		if (len - usedRight >= arr.get(idx))
+			takeRight = 1 + dp(idx + 1, usedLeft);
+		
+		return memo[idx][usedLeft] = Math.max(takeLeft, takeRight);
+	}
+	static PrintWriter out;
+	
+	static void print (int idx, int usedLeft) {
+		if (idx == n) return ;
+		int usedRight = (idx == 0 ? 0 : cum.get(idx - 1)) - usedLeft;
+		
+		if (len - usedLeft >= arr.get(idx) && 1 + dp(idx + 1, usedLeft + arr.get(idx)) == memo[idx][usedLeft]) {
+			out.println("port");
+			print(idx + 1, usedLeft + arr.get(idx) );
+		}
+		
+		else if (len - usedRight >= arr.get(idx) && memo[idx][usedLeft] == 1 + dp(idx + 1, usedLeft)) {
+			out.println("starboard");
+			print(idx + 1, usedLeft);
+		}
+	}
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		out = new PrintWriter (System.out);
+		
+		int t = sc.nextInt();
+		while (t-- > 0) {
+			len = sc.nextInt() * 100;
+			arr = new ArrayList<>();
+			cum = new ArrayList<>();
+			
+			while (true) {
+				int nxt = sc.nextInt();
+				if (nxt == 0) break;
+				arr.add(nxt);
+				if (cum.size() == 0) cum.add(nxt);
+				else cum.add(cum.get(cum.size() - 1) + nxt);
+			}
+			n = arr.size();
+			memo = new int[n][len + 1];
+			for (int i = 0; i < n; i++)
+				Arrays.fill(memo[i], -1);
+			out.println(dp(0, 0));
+			print(0, 0);
+			if (t != 0) out.println();
+		}
+		
+		out.flush();
+		out.close();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	static class Scanner {
+
+		StringTokenizer st;
+		BufferedReader br;
+
+		public Scanner(InputStream s) {
+			br = new BufferedReader(new InputStreamReader(s));
+		}
+		
+		public Scanner(FileReader s) {
+			br = new BufferedReader(s);
+		}
+
+		public String next() throws IOException {
+			while (st == null || !st.hasMoreTokens())
+				st = new StringTokenizer(br.readLine());
+			return st.nextToken();
+		}
+
+		public int nextInt() throws IOException {
+			return Integer.parseInt(next());
+		}
+
+		public long nextLong() throws IOException {
+			return Long.parseLong(next());
+		}
+
+		public String nextLine() throws IOException {
+			return br.readLine();
+		}
+
+		public double nextDouble() throws IOException {
+			String x = next();
+			StringBuilder sb = new StringBuilder("0");
+			double res = 0, f = 1;
+			boolean dec = false, neg = false;
+			int start = 0;
+			if (x.charAt(0) == '-') {
+				neg = true;
+				start++;
+			}
+			for (int i = start; i < x.length(); i++)
+				if (x.charAt(i) == '.') {
+					res = Long.parseLong(sb.toString());
+					sb = new StringBuilder("0");
+					dec = true;
+				} else {
+					sb.append(x.charAt(i));
+					if (dec)
+						f *= 10;
+				}
+			res += Long.parseLong(sb.toString()) / f;
+			return res * (neg ? -1 : 1);
+		}
+
+		public boolean ready() throws IOException {
+			return br.ready();
+		}
+
+		public boolean nextEmpty() throws IOException {
+			String s = nextLine();
+			st = new StringTokenizer(s);
+			return s.isEmpty();
+		}
+	}
+}

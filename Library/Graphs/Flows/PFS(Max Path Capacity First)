@@ -1,0 +1,33 @@
+// with PFS at most 2M1gU steps are require,
+// Combine this with the O(M 1g M) complexity of the search to get the worst-case running time of this algorithm.
+
+int pfs()
+  priority queue PQ
+  push node(source, infinity, -1) to PQ
+  keep the array from as in bfs()
+  // if no augmenting path is found, path_cap will remain 0
+  path_cap = 0
+  while PQ is not empty
+    node aux = pop from PQ
+    where = aux.vertex, cost = aux.priority
+    if we already visited where continue
+    from[where] = aux.from
+    if where = sink
+      path_cap = cost
+      exit while loop
+    mark where as visited
+    for each vertex next adjacent to where
+      if capacity[where][next] > 0
+        new_cost = min(cost, capacity[where][next])
+        push node(next, new_cost, where) to PQ
+    end for
+  end while
+  // update the residual network
+  where = sink
+  while from[where] > -1
+    prev = from[where]
+    capacity[prev][where] -= path_cap
+    capacity[where][prev] += path_cap
+    where = prev
+  end while
+  return path_cap

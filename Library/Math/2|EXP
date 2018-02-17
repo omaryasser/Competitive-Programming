@@ -1,0 +1,15 @@
+// 2 | EXP = 2 ^ (2 ^ 2 ^ 2 ^ ..... ^ 2) EXP times
+int solve(int exp, int m) :  // solving 2|exp mod m
+    if m == 1 :  // for someNumberGreaterThan15 cases, this will reach in less than 16 steps
+       return 0;
+    elif exp == 1 :
+       return 2 mod m
+    else :
+       m1 = component of 2 power of m // imp so that Fermat's theorem can be applied
+       m = m / m1
+       ans1 = pow(solve(exp-1, phi(m)), m) // Fermat's theorem.
+       ans2 = 2 | exp mod m1 // this is easy to figure out
+       for i = 0 to m * m1 :   // combine the two answers
+           if i mod m == ans1 and i mod m1 == ans2 :
+              return i
+    return 0
