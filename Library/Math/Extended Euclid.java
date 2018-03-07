@@ -143,3 +143,48 @@ public static Result extendedEuclid(long A, long B) {
         }
 }
 }
+
+
+
+// # Of Positive solutions
+public static Forgive.Result extendedEuclid(long A, long B) {
+        if (A < 0) {
+            Forgive.Result nxt = extendedEuclid(-A, B);
+            return new Forgive.Result(nxt.d, nxt.x * -1, nxt.y);
+        }
+        if (B < 0) {
+            Forgive.Result nxt = extendedEuclid(A, -B);
+            return new Forgive.Result(nxt.d, nxt.x, nxt.y * -1);
+        }
+        if (B == 0)
+            return new Forgive.Result(A, 1, 0);
+
+        else {
+            Forgive.Result nxt = extendedEuclid(B, A % B);
+            return new Forgive.Result(nxt.d, nxt.y, nxt.x - (A / B) * nxt.y);
+        }
+    }
+
+    public void solve(int testNumber, Scanner sc, PrintWriter out) {
+        long a = sc.nextInt(), b = sc.nextInt(), n = sc.nextInt();
+        Forgive.Result r = extendedEuclid(a, b);
+        long x = r.x * n / r.d;
+        long y = r.y * n / r.d;
+        long a_ = a / r.d, b_ = b / r.d;
+        long first = (x - 1) % b_ != 0 && (x - 1) / b_ < 0 ? (x - 1) / b_ - 1 : (x - 1) / b_;
+        long second = (1 - y) % a_ != 0 && (1 - y) / a_ > 0? (1 - y) / a_ + 1 : (1 - y) / a_;
+        out.println(1l * 5 * 21 * Math.max(0, first - second + 1));
+    }
+
+    static class Result {
+        long d;
+        long x;
+        long y;
+
+        Result(long dd, long xx, long yy) {
+            d = dd;
+            x = xx;
+            y = yy;
+        }
+
+    }
