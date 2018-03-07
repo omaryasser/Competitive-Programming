@@ -5,6 +5,8 @@ only two pairs of x, y will satisfy
 extended euclid gets us one of those two pairs
 
 // to get mod inverse of a with mod m, call extendedEuclid(a, m), res = (x % m) + m
+
+// assume that X, Y are solutions for the real equation, then get other solutions by (X-(b/g)*k,  Y+(a/g)*k)
 static class Result
 {
 int d, x, y;
