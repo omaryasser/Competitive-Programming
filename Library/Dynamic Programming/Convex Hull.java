@@ -1,4 +1,5 @@
 /*
+ * Divide & Conquer: dp[i][j] = min k < j{dp[i - 1][k] + C[k][j]} A[i][j] <= A[i][j + 1]
  * Convex Hull Optimization
  * dp[i] = min(j < i){ dp[j] + a[i] * b[j] } where b[j] >= b[j + 1]
  * 
