@@ -1,3 +1,14 @@
+/*
+ * Convex Hull Optimization
+ * dp[i] = min(j < i){ dp[j] + a[i] * b[j] } where b[j] >= b[j + 1]
+ * 
+ * Original Complexity: O(n^2)
+ * Optimized Complexity: O(n log n) or O(n) if a[i] <= a[i + 1]
+ * 
+ * Following operations are used within the DP function
+ * 
+ * Can be trapped in overflow
+ */
 public class ConvexHull {
 
         long[] A, B;            //initialized with size n
