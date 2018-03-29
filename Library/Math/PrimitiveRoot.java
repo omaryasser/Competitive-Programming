@@ -8,7 +8,7 @@ int powmod (int a, int b, int p) {
         return res;
 }
 
-// if g is primitive root of n then for every a | isCoprime(a, n) there exist K | g^k = a (mod n)
+// if g is primitive root of n then for every a | isCoprime(a, n) there exist k such that g^k = a (mod n)
 // p is a prime number
 int generator (int p) {
         vector<int> fact;
