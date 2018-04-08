@@ -115,56 +115,7 @@ static int find_all_solutions(int a, int b, int minx, int maxx, int miny, int ma
         return (rx - lx) / Math.abs(b) + 1;
 }
 
-static class Result {
-long d, x, y;
-
-Result(long dd, long xx, long yy) {
-        d = dd;
-        x = xx;
-        y = yy;
-}
-}
-
-public static Result extendedEuclid(long A, long B) {
-        if (A < 0) {
-                Result nxt = extendedEuclid(-A, B);
-                return new Result(nxt.d, nxt.x * -1, nxt.y);
-        }
-        if (B < 0) {
-                Result nxt = extendedEuclid(A, -B);
-                return new Result(nxt.d, nxt.x, nxt.y * -1);
-        }
-        if (B == 0)
-                return new Result(A, 1, 0);
-
-        else {
-                Result nxt = extendedEuclid(B, A % B);
-                return new Result(nxt.d, nxt.y, nxt.x - (A / B) * nxt.y);
-        }
-}
-}
-
-
-
 // # Of Positive solutions
-public static Forgive.Result extendedEuclid(long A, long B) {
-        if (A < 0) {
-            Forgive.Result nxt = extendedEuclid(-A, B);
-            return new Forgive.Result(nxt.d, nxt.x * -1, nxt.y);
-        }
-        if (B < 0) {
-            Forgive.Result nxt = extendedEuclid(A, -B);
-            return new Forgive.Result(nxt.d, nxt.x, nxt.y * -1);
-        }
-        if (B == 0)
-            return new Forgive.Result(A, 1, 0);
-
-        else {
-            Forgive.Result nxt = extendedEuclid(B, A % B);
-            return new Forgive.Result(nxt.d, nxt.y, nxt.x - (A / B) * nxt.y);
-        }
-    }
-
     public void solve(int testNumber, Scanner sc, PrintWriter out) {
         long a = sc.nextInt(), b = sc.nextInt(), n = sc.nextInt();
         Forgive.Result r = extendedEuclid(a, b);
@@ -176,15 +127,4 @@ public static Forgive.Result extendedEuclid(long A, long B) {
         out.println(1l * 5 * 21 * Math.max(0, first - second + 1));
     }
 
-    static class Result {
-        long d;
-        long x;
-        long y;
 
-        Result(long dd, long xx, long yy) {
-            d = dd;
-            x = xx;
-            y = yy;
-        }
-
-    }

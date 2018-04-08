@@ -1,5 +1,5 @@
 const int MAXN = максимальное число вершин в графе;
-vector<int> g[MAXN], q[MAXN]; // граф и все запросы
+vector<int> g[MAXN], q[MAXN]; // Graph & Queries
 int dsu[MAXN], ancestor[MAXN];
 bool u[MAXN];
  
@@ -32,7 +32,7 @@ int main() {
  
 	// чтение запросов
 	for (;;) {
-		int a, b = ...; // очередной запрос
+		int a, b = ...; // Query
 		--a, --b;
 		q[a].push_back (b);
 		q[b].push_back (a);
