@@ -1,3 +1,7 @@
+/*
+    Perfect Triples are easy. 
+    After removing them you will have at most 2 cards of each kind left which can be represented by 3^n mask to DP on it.
+*/
 #include <bits/stdc++.h>
 #include <bitset>
 
@@ -38,13 +42,7 @@ int dp(int *a){
         REP1(j,i,lst+1){
             if(a[i]>0&&a[j]>0&&a[i]+a[j]-(i==j?a[i]:0)>=2&&i+j>=lst){
                 a[i]--,a[j]--;
-                // if(lst==10&&i==1&&j==9){
-                //     printf("asdfa %d %d\n", a[i],a[j]);
-                //     REP(k,13)printf("%d\n", a[k]);
-                // }
-
                 r=max(r,1+dp(a));
-                // if(a[9]==0&&lst==2&&i==0&&j==2&&a[10]==0&&a[1]==0)printf("%d sadfasdf\n",r);
                 a[i]++,a[j]++;
             }
         }
@@ -77,11 +75,8 @@ int main(){
             if(!i)a.fi+=c[i][j]/3,c[i][j]%=3;
             else b.fi+=c[i][j]/3,c[i][j]%=3;
         }
-        // REP(i,13)c[0][i]=2;
         a.se=dp(c[0]);
         b.se=dp(c[1]);
-        // REP(i,13)printf("%d\n", c[0][i]);
-        // printf("%d %d\n", a.se,b.se);
         if(a>b)
             printf("1\n");
         else if(b>a)
