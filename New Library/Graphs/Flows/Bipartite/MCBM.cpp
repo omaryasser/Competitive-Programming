@@ -1,10 +1,10 @@
 // Hopcroft O(E*sqrt(V))
 class BipGraph{
+public:
     int n,m;
     list<int>*adj;
     int*pairU,*pairV,*dist;
     int NIL=0,INF=1e9;
-public:
     bool bfs(){
         queue<int> Q;
         for(int u=1;u<=n;u++){
