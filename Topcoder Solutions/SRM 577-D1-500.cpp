@@ -1,3 +1,6 @@
+/*
+Same as the editorial.
+*/
 #include <bits/stdc++.h>
 #include <bitset>
 
