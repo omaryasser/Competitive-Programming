@@ -1,7 +1,7 @@
 /*
   To make this tour, the graph should satisfy euler tour conditions.
   Problem reduced to adding some edges to the original graph satisfying euler tour. (these edges should be identical to already existing ones).
-  Consider two vertices u,v of odd degree. we can turn them into even-degree-vertices without altering any other vertix by adding shortest path.
+  Consider two vertices u,v of odd degree. we can turn them into even-degree-vertices without altering any other vertix by adding shortest path between them.
 */
 #include <bits/stdc++.h>
 #include <bitset>
