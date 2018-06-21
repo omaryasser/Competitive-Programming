@@ -1,3 +1,7 @@
+/*
+We need to find the # of numbers coprime with M! (call it X), the there is X numbers included in the answer from 2->M!,
+also there are other X numbers included in the answer from M! + 1, 2M! , and so on. So the result will be N!/M! * (X)
+*/
 #include <bits/stdc++.h>
 #include <bitset>
 
