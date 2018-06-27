@@ -56,7 +56,7 @@ pnode init(int val){
     ret->sum=val;ret->lazy=0;
     return ret;
 }
-int range_query(pnode t,int l,int r){
+int range_query(pnode &t,int l,int r){
     pnode L,mid,R;
     split(t,L,mid,l-1);
     split(mid,t,R,r-l);
@@ -65,7 +65,7 @@ int range_query(pnode t,int l,int r){
     merge(t,mid,R);
     return ans;
 }
-void range_update(pnode t,int l,int r,int val){
+void range_update(pnode &t,int l,int r,int val){
     pnode L,mid,R;
     split(t,L,mid,l-1);
     split(mid,t,R,r-l);
