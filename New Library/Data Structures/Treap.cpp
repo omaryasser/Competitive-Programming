@@ -50,7 +50,7 @@ void merge(pnode &t,pnode l,pnode r){
     operation(t);
 }
 pnode init(int val){
-    pnode ret = (pnode)malloc(sizeof(node));
+    pnode ret = new node();
     ret->prior=rand();ret->size=1;
     ret->val=val;
     ret->sum=val;ret->lazy=0;
