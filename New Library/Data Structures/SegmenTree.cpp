@@ -10,9 +10,9 @@ struct ST{
     void propagate(int u,int s,int m,int e){
         if(lazy[u]){
             tree[u<<1]+=lazy[u];
-            tree[u<<1|1]+=lazy[u];
+            tree[u<<1^1]+=lazy[u];
             lazy[u<<1]+=lazy[u];
-            lazy[u<<1|1]+=lazy[u];
+            lazy[u<<1^1]+=lazy[u];
             lazy[u]=0;
         }
     }
@@ -25,8 +25,8 @@ struct ST{
             int m=s+e>>1;
             propagate(u,s,m,e);
             update(u<<1,s,m,l,r,ad);
-            update(u<<1|1,m+1,e,l,r,ad);
-            tree[u]=max(tree[u<<1],tree[u<<1|1]);
+            update(u<<1^1,m+1,e,l,r,ad);
+            tree[u]=max(tree[u<<1],tree[u<<1^1]);
         }
     }
 
@@ -39,7 +39,7 @@ struct ST{
         if(s>r||e<l)return 0;
         int m=s+e>>1;
         propagate(u,s,m,e);
-        return max(query(u<<1,s,m,l,r),query(u<<1|1,m+1,e,l,r));
+        return max(query(u<<1,s,m,l,r),query(u<<1^1,m+1,e,l,r));
     }
 
     int query(int l,int r){
