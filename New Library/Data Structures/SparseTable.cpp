@@ -6,7 +6,7 @@ struct ST{
         this->n=n;
         this->a=vector<int>(a,a+n);
         lg=0;
-        while((1<<lg)<n)lg++;
+        while((1<<lg)<=n)lg++;
         tree.assign(n,vector<int>(lg));
         plog.assign(n+1,0);
         int pw=2,curL=0;
