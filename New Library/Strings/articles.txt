@@ -1,0 +1,2 @@
+Lyndon Factorization & Getting Smallest Cyclic Shift O(n):
+https://cp-algorithms.com/string/lyndon_factorization.html
