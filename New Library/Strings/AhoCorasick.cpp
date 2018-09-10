@@ -38,6 +38,22 @@ int get_link(int v) {
     return t[v].link;
 }
 
+int get_best_link(int v){
+    if (t[v].best_link == -1) {
+        if(v == 0 || t[v].p == 0){
+            return t[v].best_link = 0;
+        }else{
+            int suffix_link = get_link(v);
+            if(suffix_link == 0 || (int)t[suffix_link].indices.size() != 0){
+                return t[v].best_link = suffix_link;
+            } else{
+                return t[v].best_link = get_best_link(suffix_link);
+            }
+        }
+    }
+    return t[v].best_link;
+}
+
 int go(int v, char ch) {
     int c = ch - 'a';
     if (t[v].go[c] == -1) {
